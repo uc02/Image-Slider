@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { descriptions, images } from '../data'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+
+const getRandomNumber = () => Math.floor(Math.random() * 41) - 20;
  
 const Slider = () => {
 
@@ -18,15 +20,19 @@ const Slider = () => {
             <img 
             key={i} 
             src={image} 
-            className={`w-full h-full absolute object-cover rounded-3xl ${i === index ? 'activeImage' : 'inactiveImage'}`} />
+            className={`w-full h-full absolute object-cover rounded-3xl transition-all duration-300 ${i === index ? 'activeImage' : 'inactiveImage'}`}
+            style={{
+              transform: `rotate(${index === i ? 0 : getRandomNumber()}deg)`
+            }}
+            />
            ))}
         </div>
 
         {/* descriptions */}
         <div className='relative sm:w-[400px] w-[320px] mt-22 lg:mt-5'>
           {descriptions.map((desc,i) => (
-          <p className={`text-center sm:text-xl text-gray-600 absolute 
-            ${ i === index ? 'activeDesc' : 'inactiveDesc'}`}
+          <p className={`text-center sm:text-xl text-gray-600 absolute tansition-all duration-300
+            ${ i === index ? 'activeDesc delay-100' : 'inactiveDesc'}`}
            key={i}>          
             {desc}
             </p>
